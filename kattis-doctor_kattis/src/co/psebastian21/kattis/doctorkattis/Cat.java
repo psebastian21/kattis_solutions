@@ -1,7 +1,8 @@
-package com.psebastian21.kattis.doctorkattis;
+package co.psebastian21.kattis.doctorkattis;
 
 import java.util.Objects;
 
+// Note: this class has a natural ordering that is inconsistent with equals.
 public class Cat implements Comparable<Cat> {
 	
 	private String name;
@@ -48,8 +49,13 @@ public class Cat implements Comparable<Cat> {
 
 	@Override
 	public int compareTo(Cat o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.infectionDegree > o.infectionDegree)
+			return -1;
+		else if(this.infectionDegree == o.infectionDegree && this.arrivalTime < o.arrivalTime)
+			return -1;
+		else if(this.infectionDegree == o.infectionDegree && this.arrivalTime == o.arrivalTime)
+			return 0;
+		else return 1;
 	}
 
 }
