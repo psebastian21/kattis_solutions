@@ -1,4 +1,4 @@
-package psebastian21.kattis.doctorkattis;
+package com.psebastian21.kattis.doctorkattis;
 
 import java.util.Objects;
 
