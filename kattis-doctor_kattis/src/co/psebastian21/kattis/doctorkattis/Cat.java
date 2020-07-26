@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Cat implements Comparable<Cat> {
 	
 	private String name;
-	private int infectionDegree;
+	private int infectionLevel;
 	private long arrivalTime;
 		
 	public Cat(String name, int infectionDegree, long arrivalTime) {
 		this.name = name;
-		this.infectionDegree = infectionDegree;
+		this.infectionLevel = infectionDegree;
 		this.arrivalTime = arrivalTime;
 	}
 
@@ -20,20 +20,20 @@ public class Cat implements Comparable<Cat> {
 	}
 
 	public int getInfectionDegree() {
-		return infectionDegree;
+		return infectionLevel;
 	}
 	
 	public long getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void incrementInfectionDegree(int increment) {
-		this.infectionDegree += increment;
+	public void incrementInfectionLevel(int increment) {
+		this.infectionLevel += increment;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(arrivalTime, infectionDegree, name);
+		return Objects.hash(arrivalTime, infectionLevel, name);
 	}
 
 	@Override
@@ -43,17 +43,17 @@ public class Cat implements Comparable<Cat> {
 		if (!(obj instanceof Cat))
 			return false;
 		Cat other = (Cat) obj;
-		return arrivalTime == other.arrivalTime && infectionDegree == other.infectionDegree
+		return arrivalTime == other.arrivalTime && infectionLevel == other.infectionLevel
 				&& Objects.equals(name, other.name);
 	}
 
 	@Override
 	public int compareTo(Cat o) {
-		if(this.infectionDegree > o.infectionDegree)
+		if(this.infectionLevel > o.infectionLevel)
 			return -1;
-		else if(this.infectionDegree == o.infectionDegree && this.arrivalTime < o.arrivalTime)
+		else if(this.infectionLevel == o.infectionLevel && this.arrivalTime < o.arrivalTime)
 			return -1;
-		else if(this.infectionDegree == o.infectionDegree && this.arrivalTime == o.arrivalTime)
+		else if(this.infectionLevel == o.infectionLevel && this.arrivalTime == o.arrivalTime)
 			return 0;
 		else return 1;
 	}
