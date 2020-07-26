@@ -7,12 +7,12 @@ public class Cat implements Comparable<Cat> {
 	
 	private String name;
 	private int infectionLevel;
-	private long arrivalTime;
+	private int arrivalOrder;
 		
-	public Cat(String name, int infectionDegree, long arrivalTime) {
+	public Cat(String name, int infectionDegree, int arrivalOrder) {
 		this.name = name;
 		this.infectionLevel = infectionDegree;
-		this.arrivalTime = arrivalTime;
+		this.arrivalOrder = arrivalOrder;
 	}
 
 	public String getName() {
@@ -23,8 +23,8 @@ public class Cat implements Comparable<Cat> {
 		return infectionLevel;
 	}
 	
-	public long getArrivalTime() {
-		return arrivalTime;
+	public int getArrivalOrder() {
+		return arrivalOrder;
 	}
 
 	public void incrementInfectionLevel(int increment) {
@@ -33,7 +33,7 @@ public class Cat implements Comparable<Cat> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(arrivalTime, infectionLevel, name);
+		return Objects.hash(arrivalOrder, infectionLevel, name);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class Cat implements Comparable<Cat> {
 		if (!(obj instanceof Cat))
 			return false;
 		Cat other = (Cat) obj;
-		return arrivalTime == other.arrivalTime && infectionLevel == other.infectionLevel
+		return arrivalOrder == other.arrivalOrder && infectionLevel == other.infectionLevel
 				&& Objects.equals(name, other.name);
 	}
 
@@ -51,11 +51,16 @@ public class Cat implements Comparable<Cat> {
 	public int compareTo(Cat o) {
 		if(this.infectionLevel > o.infectionLevel)
 			return -1;
-		else if(this.infectionLevel == o.infectionLevel && this.arrivalTime < o.arrivalTime)
+		else if(this.infectionLevel == o.infectionLevel && this.arrivalOrder < o.arrivalOrder)
 			return -1;
-		else if(this.infectionLevel == o.infectionLevel && this.arrivalTime == o.arrivalTime)
+		else if(this.infectionLevel == o.infectionLevel && this.arrivalOrder == o.arrivalOrder)
 			return 0;
 		else return 1;
+	}
+
+	@Override
+	public String toString() {
+		return "Cat [name=" + name + ", infectionLevel=" + infectionLevel + ", arrivalOrder=" + arrivalOrder + "]";
 	}
 
 }
