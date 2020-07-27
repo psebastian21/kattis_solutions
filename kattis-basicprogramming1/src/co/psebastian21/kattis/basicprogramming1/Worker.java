@@ -1,8 +1,9 @@
 package co.psebastian21.kattis.basicprogramming1;
 
 import java.util.Arrays;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 public class Worker {
 	
@@ -16,36 +17,53 @@ public class Worker {
 		return "7";
 	}
 	public String two() {
-		if(array[0] > array[1])
+		int first = array[0];
+		int second = array[1];
+		if(first > second)
 			return "Bigger";
-		else if (array[0].equals(array[1]))
+		else if (first == second)
 			return "Equal";
 		else
 			return "Smaller";
 	}
 	public String three() {
-		SortedSet<Integer> set = new TreeSet<>();
-		set.addAll(Arrays.asList(Arrays.copyOfRange(array, 0, 3)));
-		Integer median = set.toArray(new Integer[0])[1];
-		return String.valueOf(median);
+		List<Integer> subArray = Arrays.asList(array[0], array[1], array[2]);
+		Collections.sort(subArray);
+		return String.valueOf(subArray.get(1));
 	}
 	public String four() {
-		return String.valueOf(Arrays.stream(array)
-				.reduce(0, Integer::sum));
+		int sum = 0;
+		for(int i : array) {
+			sum += i;
+		}
+		return String.valueOf(sum);
 	}
 	public String five() {
-		return String.valueOf(Arrays.stream(array)
-				.filter(i -> i % 2 == 0)
-				.reduce(0, Integer::sum));
+		int sum = 0;
+		for(int i : array) {
+			sum += i % 2 == 0 ? i: 0;
+		}
+		return String.valueOf(sum);
 	}
 	public String six() {
-		int[] chars = Arrays.stream(array)
-				.mapToInt(i -> i % 26 + 97)
-				.toArray();
-		return new String(chars, 0, chars.length);
+		StringBuilder sb = new StringBuilder();
+		for(int i : array) {
+			sb.append((char)(i % 26 + 97));
+		}
+		return sb.toString();
 	}
 	public String seven() {
-		return "";
+		int i = 0;
+		HashSet<Integer> visitedIndexes = new HashSet<>();
+		while(!visitedIndexes.contains(i)) {
+			if(i >= array.length)
+				return "Out";
+			else if(i == array.length - 1)
+				return "Done";
+			visitedIndexes.add(i);
+			i = array[i];
+		}
+		return "Cyclic";
 	}
 	
 
